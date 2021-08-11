@@ -19,46 +19,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore().collection("CheckProfile");
 
-
-/*
-async function main() {
-	await liff.init({ liffId: "1655966947-WdMKzP9X" });
-	document.getElementById("isLoggedIn").append(liff.isLoggedIn());
-	if(liff.isLoggedIn()) {
-		getUserProfile();
-	} else {
-		liff.login();
-	}
-}
-main();
-
-
-function openWindow() {
-	liff.openWindow({
-		url: "https://line.me",
-		external: true     
-	})
-}
-
-
-async function getUserProfile() {
-	const profile = await liff.getProfile();
-	vLineID = profile.userId;
-	vLineName = profile.displayName;
-	vLinePicture = profile.pictureUrl;
-	sessionStorage.setItem("LineID", profile.userId);
-	sessionStorage.setItem("LineName", profile.displayName);
-	sessionStorage.setItem("LinePicture", profile.pictureUrl);
-	//alert("LineID = "+sessionStorage.getItem("LineID"));
-	FindID(profile.userId);
-}
-*/
-
-
-
-
-
-
 FindID();
 
 function FindID() {
