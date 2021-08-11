@@ -3,6 +3,7 @@ var vLineName = "";
 var vLinePicture = "";
 var vstatusconfirm = 0;
 document.getElementById('gotopage').style.display='none';
+//document.getElementById('loading').style.display='none';
 
 var firebaseConfig = {
 	apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
@@ -65,7 +66,8 @@ function FindID(gLineID) {
 				sessionStorage.setItem("EmpName", doc.data().empName);
 				sessionStorage.setItem("EmpID", doc.data().empID);
 				sessionStorage.setItem("EmpBR", doc.data().empBr);
-				alert(doc.data().empBr);
+				document.getElementById('loading').style.display='none';
+				//alert(doc.data().empBr);
 	        }
 		});
 	});
