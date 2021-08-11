@@ -10,8 +10,6 @@ sessionStorage.setItem("LineID", sLineID);
 sessionStorage.setItem("LineName", sLineName);
 sessionStorage.setItem("LinePicture", sLinePicture);
 */
-
-
 $(document).ready(function () {
   main();
 });
