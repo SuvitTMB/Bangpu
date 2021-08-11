@@ -11,7 +11,6 @@ sessionStorage.setItem("LineName", sLineName);
 sessionStorage.setItem("LinePicture", sLinePicture);
 */
 $(document).ready(function () {
-  main();
 });
 
 
@@ -24,6 +23,7 @@ async function main() {
     liff.login();
   }
 }
+main();
 
 
 async function getUserProfile() {
