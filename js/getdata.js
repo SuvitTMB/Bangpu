@@ -22,7 +22,7 @@ var db = firebase.firestore().collection("CheckProfile");
 FindID();
 
 function FindID() {
-	//alert("222"+sessionStorage.getItem("LineID"));
+	alert("LineID"+sessionStorage.getItem("LineID"));
     db.where('lineID','==',sessionStorage.getItem("LineID")).get().then((snapshot)=> {
       	snapshot.forEach(doc=> {
         	vstatusconfirm = doc.data().statusconfirm;
@@ -41,7 +41,7 @@ function FindID() {
 
 	db.where('lineID','==',sessionStorage.getItem("LineID")).get().then(function(doc) {
 	    if (!doc.empty) {
-	    	//alert("มีข้อมูลอยู่แล้ว");
+	    	alert("มีข้อมูลอยู่แล้ว");
 			//alert(sessionStorage.getItem("EmpName")+"----"+gLineID+"7777");
 			if(vstatusconfirm!=9) {
 				document.getElementById('loading').style.display='none';
@@ -49,7 +49,7 @@ function FindID() {
 			}
 	        //console.log("Document data:", doc[0].data());
 	    } else {
-			//alert("ยังไม่มีข้อมูล");
+			alert("ยังไม่มีข้อมูล");
 			//alert("333"+sessionStorage.getItem("LineID"));
 	        console.log("No such document!");
 	        window.location = "adddata.html";
