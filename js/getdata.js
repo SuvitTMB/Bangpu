@@ -31,11 +31,12 @@ function FindID() {
 		        alert("กรุณารอการตรวจสอบข้อมูล/ทำการตรวจสอบความถูกต้องของข้อมูลอีกครั้ง");
 	        	localStorage.removeItem("LineLogin");
 	        	window.location = "checkprofile.html";
-	        } 
-	        sessionStorage.setItem("LineLogin", doc.data().statuspass);
-			sessionStorage.setItem("EmpName", doc.data().empName);
-			sessionStorage.setItem("EmpID", doc.data().empID);
-			sessionStorage.setItem("EmpBR", doc.data().empBr);
+	        } else {
+		        sessionStorage.setItem("LineLogin", doc.data().statuspass);
+				sessionStorage.setItem("EmpName", doc.data().empName);
+				sessionStorage.setItem("EmpID", doc.data().empID);
+				sessionStorage.setItem("EmpBR", doc.data().empBr);
+	        }
 		});
 	});
 
