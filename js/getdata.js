@@ -2,10 +2,7 @@ var vLineID = "";
 var vLineName = "";
 var vLinePicture = "";
 var vstatusconfirm = 0;
-document.getElementById("loading").value = '<div id="loading"><img src="./img/loading.gif" height="100px;"></div>';
-document.getElementById('loading').style.display='block';
 document.getElementById('gotopage').style.display='none';
-
 
 var firebaseConfig = {
 	apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
@@ -19,11 +16,43 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore().collection("CheckProfile");
 
-FindID();
 
-function FindID() {
-	alert("LineID"+sessionStorage.getItem("LineID"));
-    db.where('lineID','==',sessionStorage.getItem("LineID")).get().then((snapshot)=> {
+async function main() {
+	await liff.init({ liffId: "1655966947-RLMQZVjk" });
+	document.getElementById("isLoggedIn").append(liff.isLoggedIn());
+	if(liff.isLoggedIn()) {
+		getUserProfile();
+	} else {
+		liff.login();
+	}
+}
+main();
+
+
+function openWindow() {
+	liff.openWindow({
+		url: "https://line.me",
+		external: true     
+	})
+}
+
+
+async function getUserProfile() {
+	const profile = await liff.getProfile();
+	vLineID = profile.userId;
+	vLineName = profile.displayName;
+	vLinePicture = profile.pictureUrl;
+	sessionStorage.setItem("LineID", profile.userId);
+	sessionStorage.setItem("LineName", profile.displayName);
+	sessionStorage.setItem("LinePicture", profile.pictureUrl);
+	//alert("LineID = "+sessionStorage.getItem("LineID"));
+	FindID(profile.userId);
+}
+
+
+function FindID(gLineID) {
+	//alert("222"+sessionStorage.getItem("LineID"));
+    db.where('lineID','==',gLineID).get().then((snapshot)=> {
       	snapshot.forEach(doc=> {
         	vstatusconfirm = doc.data().statusconfirm;
 	        if(doc.data().statusconfirm==9) {
@@ -36,21 +65,21 @@ function FindID() {
 				sessionStorage.setItem("EmpName", doc.data().empName);
 				sessionStorage.setItem("EmpID", doc.data().empID);
 				sessionStorage.setItem("EmpBR", doc.data().empBr);
+				alert(doc.data().empBr);
 	        }
 		});
 	});
 
-	db.where('lineID','==',sessionStorage.getItem("LineID")).get().then(function(doc) {
+	db.where('lineID','==',gLineID).get().then(function(doc) {
 	    if (!doc.empty) {
-	    	alert("มีข้อมูลอยู่แล้ว");
+	    	//alert("มีข้อมูลอยู่แล้ว");
 			//alert(sessionStorage.getItem("EmpName")+"----"+gLineID+"7777");
 			if(vstatusconfirm!=9) {
-				document.getElementById('loading').style.display='none';
 		    	document.getElementById('gotopage').style.display='block';
 			}
 	        //console.log("Document data:", doc[0].data());
 	    } else {
-			alert("ยังไม่มีข้อมูล");
+			//alert("ยังไม่มีข้อมูล");
 			//alert("333"+sessionStorage.getItem("LineID"));
 	        console.log("No such document!");
 	        window.location = "adddata.html";
@@ -60,9 +89,3 @@ function FindID() {
 	    console.log("Error getting document:", error);
 	});
 }
-
-
-
-
-
-
