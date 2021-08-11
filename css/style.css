@@ -582,3 +582,10 @@ body {
   margin-top:6px;width:30px; height:30px; border-radius: 50%; border:2px solid #f68b1f;
 
 }
+.rule_head {
+  padding:6px 25px; background: #f68b1f; color:#ffffff; margin-bottom: 10px; border-radius: 10px;
+  display: inline-block; letter-spacing: 2px; left:0; font-size: 12px; margin-top:15px;
+}
+
+
+
