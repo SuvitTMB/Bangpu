@@ -271,7 +271,7 @@ input[type="radio"]:checked + label:after {
     color: #ffffff;
     font-size: 13px;
     cursor: pointer;
-    min-width:120px;
+    /*min-width:120px;*/
     letter-spacing: 2px;
 }
 
