@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>LINE Retail Society</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+		<!------- FIREBASE LIBRARIES ------>
+  <!--<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>-->
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script> 
+
+  <!--<script src="https://static.line-scdn.net/liff/edge/versions/2.8.1/sdk.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>-->
+
+
+  <style>
+	 .imgView { height: 200px;width:200px; border:2px solid #f68b1f; border-radius: 10px;}
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="index.html">Retail Society</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="hellobangpu.html">ประกวด Hello บางปู</a></li>
+          <li><a href="hellorule.html">กติกาการแข่งขัน</a></li>
+          <li><a href="hellotalk.html">Hello Talk</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container-max">
+  <div class="container" id="Page-1">
+    <div class="section-title" data-aos="fade-up" style="margin-top:80px;color:#0056ff;">
+      <center>
+	      <div style="font-size: 15px;font-weight: 600; ">Hello บางปู</div>
+	      <div style="color:#ccc;padding:5px 30px;font-size:12px;width:390px;margin-left: auto; margin-right: auto;">
+	        <div style="padding:10px;">เลือกรูปภาพที่จะส่งประกวด</div>
+	        <img id="mying" class="imgView">
+	        <button id="select" class="btn-t2" style="margin: 10px 0 15px 0;">คลิกเพื่อเลือกรูปที่จะส่ง</button>
+	        <div style="padding:10px;">คำอธิบายประกอบรูปภาพนี้</div>
+	        <div><textarea id="namebox" placeholder="พิมพ์ข้อความประกอบรูปภาพ .." style="padding:5px;color:#0056ff;font-size: 12px; height:60px;width:100%;"></textarea></div>	
+			<button id="upload" class="btn-t1">อัพโหลดรูปภาพของคุณ</button>
+		  </div>
+	  </center>
+	</div>
+  </div>
+  <div class="container" id="Page-2" style="margin:auto;width:390px;">
+  	<div style="padding-top:120px;"><img src="./img/waiting.gif" width="390px;"></div>
+  </div>
+</div>
+
+
+<!------- FIREBASE LIBRARIES ------>
+<script id="ManiScript">
+
+
+/*
+var sLineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
+var sLineName = "Website";
+var sLinePicture = "https://profile.line-scdn.net/0hoLlg-mNNMGNRHiaTpMdPNG1bPg4mMDYrKX8qVnIYOgYpe3QwbCp2AXVKaVN_fnMzOC16V3NMagF8";
+var sEmpID = "08400";
+var sEmpName = "สุวิทย์ ชัยรุ่งปัญญา";	
+var sEmpBr = "OCSE";
+
+sessionStorage.setItem("LineID", sLineID);
+sessionStorage.setItem("LineName", sLineName);
+sessionStorage.setItem("LinePicture", sLinePicture);
+sessionStorage.setItem("EmpID", sEmpID);
+sessionStorage.setItem("EmpName", sEmpName);
+sessionStorage.setItem("EmpBR", sEmpBr);
+
+alert(sessionStorage.getItem("LineID"));
+*/
+
+
+/*------- VARIABLES ------*/
+var ImgName, ImgUrl;
+var files = [];
+var reader;
+var PostMemo="";
+var aCheck = 0;
+var Eid = "";
+var DateTimeStamp = 0;
+
+	//var sEmpID = "08400";
+
+    document.getElementById('Page-1').style.display='block';
+    document.getElementById('Page-2').style.display='none';
+
+
+/*------- CONFIGURATION ------*/
+	var firebaseConfig = {
+	  apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+	  authDomain: "retailproject-6f4fc.firebaseapp.com",
+	  databaseURL: "https://retailproject-6f4fc-default-rtdb.firebaseio.com",
+	  projectId: "retailproject-6f4fc",
+	  storageBucket: "retailproject-6f4fc.appspot.com",
+	  messagingSenderId: "653667385625",
+	  appId: "1:653667385625:web:a5aed08500de80839f0588",
+	  measurementId: "G-9SKTRHHSW9"
+	};
+	// Initialize Firebase
+	//var db = firebase.firestore().collection("Momday");
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    //const db = firebase.firestore();
+//alert(sessionStorage.getItem("LineID")+"======"+sessionStorage.getItem("EmpName"));	
+
+//alert(sessionStorage.getItem("LineID"));
+//alert(sessionStorage.getItem("EmpName"));
+
+/*------- SELECT PROCESS ------*/
+	document.getElementById("select").onclick = function(e){
+		var input = document.createElement('input');
+		input.type = 'file';
+		//input.click();
+		input.onchange = e=> {
+			files = e.target.files;
+			reader = new FileReader();
+			reader.onload = function() {
+				document.getElementById("mying").src = reader.result;
+			}
+			reader.readAsDataURL(files[0]);
+		}
+		input.click();
+	}
+/*------- UPLOAD PROCESS ------*/
+	document.getElementById('upload').onclick = function(){
+		//alert("Check="+document.getElementById("mying").src);
+		CallTimeStamp();
+		ImgName = sessionStorage.getItem("EmpID")+"-"+DateTimeStamp;
+		//alert(ImgName);
+		PostMemo = document.getElementById('namebox').value;
+		if(document.getElementById("mying").src=="") {
+			alert("กรุณา Upload รูปภาพที่จะส่งประกวด");
+			exit();
+		}
+		if(PostMemo=="") {
+			alert("กรุณาพิมพ์ข้อความก่อนทำการบันทึกรายการ");
+			exit();
+		}
+		//CallTimeStamp();+"-"+DateTimeStamp
+		//ImgName = document.getElementById('namebox').value;
+	    document.getElementById('Page-1').style.display='none';
+	    document.getElementById('Page-2').style.display='block';
+		var uploadTask = firebase.storage().ref('hello/'+ImgName+".jpg").put(files[0]);
+
+		uploadTask.on('state_changed', function(snapshot){
+			var progress = (snapshot.bytesTranferred / snapshot.totalBytes) * 100;
+			//document.getElementById('UpProgress').innerHTML = 'upload '+progress+'%';
+			//UpdateMomPicture();
+			//UpdateMomPicture();
+
+		},
+
+/*------- Error Handing ------*/
+		function(error) {
+			alert('error in save the image');
+		},
+
+/*------- Submit image to database ------*/
+
+		function() {
+			uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+				ImgUrl = url;
+				sessionStorage.setItem("ImgUrl", url);
+				sessionStorage.setItem("PostMemo", PostMemo);
+				//alert(sessionStorage.getItem("ImgUrl"));
+				//alert(sessionStorage.getItem("PostMemo"));
+
+				firebase.database().ref('hello/'+ImgName).set({
+					Name: ImgName,
+					Link: ImgUrl
+				});
+			//alert('image added successfully = '+ ImgUrl);
+			location.href = "hellopicture.html";
+			//location.href = "showpicture.html?PostPicture="+ImgUrl+"&PostMemo="+PostMemo;
+			//UpdateData();
+			//UpdateMomPicture();
+			}
+		);
+
+/*
+		function() {
+			uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+				ImgUrl = url;
+		  alert(url);
+
+				//firebase.database().ref('Pictures/'+ImgName).set({
+				//	Name: ImgName,
+				//	Link: ImgUrl
+				//});
+			//alert('image added successfully = '+ ImgUrl);
+			//location.href = "savePicture.html?PostPicture="+ImgUrl+"&PostMemo="+PostMemo;
+			}
+		);
+		//UpdateMomPicture();
+		UpdateData();
+*/
+	});
+}
+
+
+
+
+
+/*
+	function UpdateMomPicture() {
+		//alert(sessionStorage.getItem("LineID"));
+		db.collection("Momday").where('LineID','==',sessionStorage.getItem("LineID")).get().then((snapshot)=> {
+			snapshot.forEach(doc=> {
+				aCheck = 1;
+				Eid = doc.id;
+				alert("มีข้อมูลอยู่แล้ว ="+ Eid);
+		  });
+		  UpdateData();
+		});
+	}
+*/
+	function CallTimeStamp() {
+	    DateTimeStamp = Math.round(Date.now() / 1000);
+	}
+
+
+
+
+	function UpdateData() {
+	    //NewDate();
+		//var sPostMemo = document.getElementById('namebox').value;
+		//alert(ImgUrl+"==="+PostMemo);
+/*
+	    if(aCheck==1) {
+	      db.doc(Eid).update({
+	        PostPicture : ImgUrl, 
+	        PostMemo : sPostMemo,
+	        PostDate : dateString,
+	        PostTimeStamp : DateTimeStamp
+	      });
+	      alert("OLD");
+	    } else {
+*/
+		  //alert("xxx="+ImgUrl);
+	      db.collection("PostActivity").add({
+	        LineID : sessionStorage.getItem("LineID")
+	      	/*
+	        LineID : sessionStorage.getItem("LineID"),
+	        LineName : sessionStorage.getItem("LineName"),
+	        LinePicture : sessionStorage.getItem("LinePicture"),
+	        empID : sessionStorage.getItem("EmpID"),
+	        empBr : sessionStorage.getItem("EmpBR"),
+	        empName : sessionStorage.getItem("EmpName"), 
+	        PostPicture : ImgUrl, 
+	        PostMemo : PostMemo,
+	        PostDate : dateString,
+	        PostTimeStamp : DateTimeStamp
+	        */ 
+	      });
+	      //alert("Last Save");
+/*	             
+	      alert("NEW");
+	    }
+*/
+	    location.href = "showpicture.html?ImgUrl="+ImgUrl;
+	}
+
+
+	function NewDate() {
+	  var today = new Date();
+	  var day = today.getDate() + "";
+	  var month = (today.getMonth() + 1) + "";
+	  var year = today.getFullYear() + "";
+	  var hour = today.getHours() + "";
+	  var minutes = today.getMinutes() + "";
+	  var seconds = today.getSeconds() + "";
+	  var ampm = hour >= 12 ? 'PM' : 'AM';
+	  day = checkZero(day);
+	  month = checkZero(month);
+	  year = checkZero(year);
+	  hour = checkZero(hour);
+	  minutes = checkZero(minutes);
+	  seconds = checkZero(seconds);
+	  dateString = day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm;
+	}
+
+
+	function checkZero(data){
+	  if(data.length == 1){
+	    data = "0" + data;
+	  }
+	  return data;
+	}
+
+
+
+
+</script>
+<script src="./js/config.js"></script>
+</body>
+
+</html>
