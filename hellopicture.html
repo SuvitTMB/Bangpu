@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>LINE Retail Society</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+
+  <!--<script src="https://static.line-scdn.net/liff/edge/versions/2.8.1/sdk.js"></script>-->
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+  <style>
+	 /*.img { height: 200px;width:200px; border:2px solid #f68b1f; border-radius: 10px;}*/
+	 .img { width:300px; border-radius: 10px;}
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="index.html">Retail Society</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="hellobangpu.html">ประกวด Hello บางปู</a></li>
+          <li><a href="hellopicture.html">รายการของคุณ</a></li>
+          <li><a href="hellorule.html">กติกาการแข่งขัน</a></li>
+          <!--<li><a href="hellotalk.html">รายการของคุณ</a></li>-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+<div class="container-max">
+
+
+
+
+  <div class="container-max" id="CheckProfile">
+    <!--<div id="loading" class="section-title" data-aos="fade-up" style="margin-top:80px;">-->
+      <center>
+    	<div style="margin-top:50px;max-height: 300px;overflow: hidden;"><img src="./photo/b.gif" style="width:100%;margin-top:0px;"></div>
+      	<!--<img src="./img/loading.gif" style="width:390px;margin:35px 0;">-->
+		<div class="clr" style="height: 20px;"></div>
+		<div id="btn-1" class="btn-t1" onclick="window.location.href='hellobangpu.html';">กลับหน้าประกวดภาพ</div>
+		<div id="btn-1" class="btn-t1" onclick="window.location.href='helloupload.html';">ส่งภาพประกวด</div>
+      </center>
+    </div>
+
+    <div id="PhotoEdit" class="section-title" data-aos="fade-up" style="margin-top:30px;color:#0056ff;display: none;">
+      <center>
+		  <main id="main">
+		    <section id="team" class="team section-bg" style="background-color: #ffffff;min-height:450px;">
+		      <div class="container">
+		      	<!--
+		      <div style="padding:10px;color:#0056ff;"><center><b>แสดงข้อมูลการเข้าดูเว็บ Cutover</b> | <span class="LoadCSV" onclick="export2csv()">Download CSV File</span></center></div> -->
+		      <div style="text-align: left; font-weight: 700; color:#000000; padding:10px 0;">ข้อมูลการส่งภาพประกวดของคุณ</div>
+		      <table class="table table-bordered" id="tbresult" style="padding:2px;">
+		        <tr style="text-align: center; background:#f68b1f; color:#fff;">
+		          <th style="width:9%;padding:8px;text-align: center;">No</th>
+		          <th style="width:75%;padding:8px;text-align: center;">ข้อความของภาพ</th>
+		          <!--<th width="48%">วันที่ส่งประกวด</th>-->
+		          <th style="width:16%;padding:8px;text-align: center;">Status</th>
+		        </tr>
+		      </table>
+		      	<div class="clr" style="height: 20px;"></div>
+				<center>
+					<div class="text-buttom">@LINE Retail Socitey</div>
+				</center>
+		      	<!--
+				<div id="btn-1" class="btn-t1" onclick="window.location.href='momday.html';">กลับหน้าแรก</div>
+				<div id="btn-1" class="btn-t1" onclick="window.location.href='upload.html';">ส่งภาพประกวด</div>
+				-->
+		      </div>
+		    </section>
+		  </main>
+
+<!--
+      	<div id="ShowAll"></div>
+-->
+	  </center>
+	</div>
+    <div id="PhotoNew" class="section-title" data-aos="fade-up" style="margin-top:80px;color:#0056ff;display: none;">
+      <center>
+		<div style="font-size: 15px;font-weight: 600;">เรากำลังรอภาพประกวดของคุณอยู่นะ</div>
+		<!--<img src="./img/mothers-day-gif-images-29.gif" style="width:390px;margin:45px 0px;">-->
+		<div class="clr"></div>
+		<div id="btn-1" class="btn-t1" onclick="window.location.href='hellobangpu.html';">กลับหน้าแรก</div>
+		<div id="btn-1" class="btn-t1" onclick="window.location.href='helloupload.html';">โหลดภาพเลย</div>
+	  </center>
+	</div>
+	<div class="clr" style="height: 20px;"></div>
+
+  </div>
+</div>
+
+
+
+<script type="text/javascript">	
+	var aCheck = 1;
+	var cleararray = "";
+	//var Eid = "";
+	//var sPostDate = "";
+	var DateTimeStamp = 0;
+	var dateString = "";
+	var i = 0;
+	var str = "";
+	var sGroupPost = "HelloBangPu";
+
+
+/*
+	var sLineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
+	var sLineName = "Website";
+	var sLinePicture = "https://profile.line-scdn.net/0hoLlg-mNNMGNRHiaTpMdPNG1bPg4mMDYrKX8qVnIYOgYpe3QwbCp2AXVKaVN_fnMzOC16V3NMagF8";
+
+	sessionStorage.setItem("LineID", sLineID);
+	sessionStorage.setItem("LineName", sLineName);
+	sessionStorage.setItem("LinePicture", sLinePicture);
+alert(sessionStorage.getItem("LineID"));
+alert(sessionStorage.getItem("EmpName"));
+*/
+
+	var firebaseConfig = {
+		apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+		authDomain: "retailproject-6f4fc.firebaseapp.com",
+		projectId: "retailproject-6f4fc",
+		storageBucket: "retailproject-6f4fc.appspot.com",
+		messagingSenderId: "653667385625",
+		appId: "1:653667385625:web:a5aed08500de80839f0588",
+		measurementId: "G-9SKTRHHSW9"
+	};
+
+	firebase.initializeApp(firebaseConfig);
+	//firebase.analytics();
+	var db = firebase.firestore().collection("PostActivity");
+
+	//SearchID();
+	//alert(sessionStorage.getItem("ImgUrl"));
+	//alert(sessionStorage.getItem("PostMemo"));
+
+
+
+	if(sessionStorage.getItem("ImgUrl")!=null && sessionStorage.getItem("ImgUrl")!="") {
+		NewDate();
+		CallTimeStamp();
+		var sPostView = 0;
+		//alert("Session = "+sessionStorage.getItem("ImgUrl"));
+	      db.add({
+	      	GroupPost : sGroupPost,
+	        LineID : sessionStorage.getItem("LineID"),
+	        LineName : sessionStorage.getItem("LineName"),
+	        LinePicture : sessionStorage.getItem("LinePicture"),
+	        empID : sessionStorage.getItem("EmpID"),
+	        empBr : sessionStorage.getItem("EmpBR"),
+	        empName : sessionStorage.getItem("EmpName"), 
+	        PostPicture : sessionStorage.getItem("ImgUrl"), 
+	        PostMemo : sessionStorage.getItem("PostMemo"),
+	        PostDate : dateString,
+	        PostView : sPostView,
+	        PostTimeStamp : DateTimeStamp
+	      });
+	      sessionStorage.setItem("ImgUrl", "");
+	      sessionStorage.setItem("PostMemo", "");
+	}
+
+
+
+	var table = document.querySelector('#tbresult');
+	SearchID();
+
+	function SearchID() { 
+
+		db
+		//.orderBy("PostTimeStamp", "desc")
+		.where('GroupPost','==',sGroupPost)
+		.where('LineID','==',sessionStorage.getItem("LineID"))
+		.orderBy("PostTimeStamp", "desc")
+		.get().then( snapshot => {
+
+		//alert("Search : "+sessionStorage.getItem("LineID"));
+		//db.where('LineID','==',sessionStorage.getItem("LineID"))
+		//.orderBy('PostTimeStamp','desc')
+		//.get().then((snapshot)=> {
+		  snapshot.forEach(doc=>{
+		    showData(doc);
+		  });
+		});
+
+		/*
+		db1.collection('Momday')
+		.where('LineID','==',sessionStorage.getItem("LineID"))
+		.orderBy('PostTimeStamp','desc')
+		.limit(200).get().then( snapshot => {
+		  snapshot.forEach(doc=> {
+		    ShowChat(doc);
+		  });
+		})
+
+		*/
+
+        //CheckDiv();
+	}
+
+
+	function showData(doc) {
+	  i = i+1;
+	  var row = table.insertRow(-1);
+	  var cell1 = row.insertCell(0);
+	  var cell2 = row.insertCell(1);
+	  var cell3 = row.insertCell(2);
+	  //var cell4 = row.insertCell(3);
+	  cell1.innerHTML = '<div style="text-align:center">'+i+'</div>';
+	  cell2.innerHTML = '<div class="ClickImg" onclick="ShowPictureID(\'' + doc.data().PostPicture + '\',\'' + doc.data().PostMemo + '\')">'+doc.data().PostMemo+'<br><span style="color:#ccc;font-size:11px;">'+doc.data().PostDate+'</font></div>';
+	  let btn=document.createElement('button');
+	  btn.textContent = "ลบ";
+	  btn.setAttribute('class','btn-t8');
+	  btn.setAttribute('data-id',doc.id);
+	  cell3.appendChild(btn);
+
+	  btn.addEventListener('click',(e)=>{
+	  	//alert(doc.(id));
+	  	console.log(e.target.getAttribute('data-id'));
+	  	let id=e.target.getAttribute('data-id');
+	  	db.doc(id).delete().then(function() {
+	  		console.log("Delete successfully");
+			$("#tbresult").val(cleararray);
+			$("#tbresult").html(cleararray);
+			location.href = "hellopicture.html";
+	  		//SearchID();
+	  	})
+	  	.catch(function(error) {
+	  		console.log("Delete failed: "+ error.Messages)
+	  	})
+	  	alert("ทำการลบข้อมูลของท่านแล้ว");
+	  	//location.href = "showpicture.html";
+	  });
+      CheckDiv();
+	  //location.href = "showpicture.html";
+	}
+
+
+
+	var str1 = "";
+	function ShowPictureID(n,y) {
+	  //ii = i+1;
+	  str1 += '<div>';
+	  str1 += '<div><img src="'+ n +'" style="max-width:290px;"></div>';
+	  str1 += '<div style="padding:8px; font-weight: 600; color:#0056ff;">"'+ y +'"</div>';
+	  str1 += '</div>';
+	  $("#DisplayPhoto").html(str1);
+	  str1 = "";
+	  document.getElementById("id01").style.display = "block";
+	}
+
+
+
+	function CloseAll() {
+	  document.getElementById('id01').style.display='none';
+	}
+
+
+	var Eid = [];
+	function DisplayData(doc) {
+	    aCheck = 1;
+		i = i+1;
+		str+='<div class="boxshow">';
+		str+='<img src="'+doc.data().PostPicture+'" style="width:100%; height:204px; border-radius: 10px;">';
+		str+='<div class="Centered-mom">'+ doc.data().PostMemo +'<br>';
+		str+='<div id="btn" class="btn-t2" onclick="RemoveDataID(' + Eid[i] + ')" style="font-size:11px;">ยกเลิกภาพนี้</div>';
+		//str+='<div id="btn" class="btn-t2" onclick="RemoveDataID(\'' + doc.id + '\')" style="font-size:11px;">ยกเลิกภาพนี้</div>';
+		//str+='<div id="btn" class="btn-t2" onclick="RemoveDataID(\'' + doc.data().PostMemo + '\')" style="font-size:11px;">ยกเลิกภาพนี้</div>';
+		str+='</div></div>';
+	}
+
+
+	//alert("Check = "+aCheck);
+	function CheckDiv() {
+		//alert(i);
+		if(i>0) {
+			//alert("case=1 :"+i);
+			document.getElementById('PhotoEdit').style.display='block';
+		    //document.getElementById('loading').style.display='none';
+		} else {
+			//alert("case=0 :"+i);
+			document.getElementById('PhotoNew').style.display='block';
+		    //document.getElementById('loading').style.display='none';
+		}
+	}
+
+
+
+	function RemoveDataID(n) {
+		//$("#ShowAll").val(cleararray);
+		//$("#ShowAll").html(cleararray);
+		alert( Eid[2] );
+
+		//var docRef = Firebase.firestore().collection("Momday").doc("bsYNIwEkjP237Ela6fUp").collection("Messages");
+		var docRef = firebase.firestore().collection("PostActivity").doc("mjLxWy4yxD54IRzum1p7");
+		alert(docRef);
+		// delete the document
+		//docRef.doc("lKjNIwEkjP537Ela6fhJ").delete();
+		//db.n.delete();
+
+		//console.log(n);
+		if(i==1) {
+			//db.doc(n).delete();
+		} else {
+			//db.doc(n).delete();
+		}
+		alert("ลบข้อมูลเรียบร้อยแล้ว = "+n);
+		location.href = "hellopicture.html";
+		//SearchID();
+		//alert("หมายเลข : "+gid);
+	}
+
+	function CallTimeStamp() {
+	    DateTimeStamp = Math.round(Date.now() / 1000);
+	}
+
+
+	function NewDate() {
+	  var today = new Date();
+	  var day = today.getDate() + "";
+	  var month = (today.getMonth() + 1) + "";
+	  var year = today.getFullYear() + "";
+	  var hour = today.getHours() + "";
+	  var minutes = today.getMinutes() + "";
+	  var seconds = today.getSeconds() + "";
+	  var ampm = hour >= 12 ? 'PM' : 'AM';
+	  day = checkZero(day);
+	  month = checkZero(month);
+	  year = checkZero(year);
+	  hour = checkZero(hour);
+	  minutes = checkZero(minutes);
+	  seconds = checkZero(seconds);
+	  dateString = day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm;
+	}
+
+
+	function checkZero(data){
+	  if(data.length == 1){
+	    data = "0" + data;
+	  }
+	  return data;
+	}
+</script>
+
+<div id="id01" class="w3-modal w3-animate-opacity">
+  <div class="w3-modal-content w3-card-4">
+    <div class="w3-container" style="min-height:300px;padding:24px;width:100%;text-align:center;">
+        <div id="DisplayPhoto"></div>
+        <div class="btn-t2" onclick="CloseAll()">ปิดหน้าต่าง</div>
+      </center>
+    </div>
+  </div>
+</div>
+
+<script src="./js/config.js"></script>
+
+
+	</body>
+
+</html>
