@@ -586,6 +586,20 @@ body {
   padding:6px 25px; background: #f68b1f; color:#ffffff; margin-bottom: 10px; border-radius: 10px;
   display: inline-block; letter-spacing: 2px; left:0; font-size: 12px; margin-top:15px;
 }
-
-
+.BoxView { max-width:185px; max-height: 150px;  border-radius: 10px;float: left; overflow: hidden;
+  border-radius:8px;border:2px solid #f1f1f1; margin:4px; padding:2px; cursor: pointer;
+  width: 100%; height: 100%; color:#0056ff;
+} 
+.BoxView:hover { border:2px solid #0056ff; }
+.max-photo {
+  /*max-width:185px; max-height: 105px; */
+  width: 100%; height: 100%;border-radius: 5px;
+}
+.img-avatar {
+  width:34px; height: 34px; border-radius: 2px;
+}
+.text-photo {
+  margin-top:1px;font-size: 11px;
+}
+.text-name { margin-top:-4px;color:#ccc; }
 
