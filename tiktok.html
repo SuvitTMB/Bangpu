@@ -22,6 +22,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
 
   <style type="text/css">
     .boxTikTok {
@@ -36,14 +39,14 @@
         height: 30%;
         margin:auto;
         color:#ffffff;
-        top: 70%; /* Adjust this value to move the positioned div up and down */
+        top: 50%; /* Adjust this value to move the positioned div up and down */
     }
     .boxTikTok .text:hover{
         position: absolute;
         border-radius: 10px;
         width: 100%;
         height: 30%;
-        top: 70%; 
+        top: 50%; 
     }
 
     .list { }
@@ -116,7 +119,7 @@
 
     <div class="clr" style="height: 35px;"></div>
     <div style="margin:auto;text-align: center;">
-      <div style="font-weight: 600; color:#f68b1f;"><u>มาถ่าย TikTok กันเถอะ</u></div>
+      <div style="font-weight: 600; color:#f68b1f;font-size: 16px;"><u>มาถ่าย TikTok กันเถอะ</u></div>
       <div style="font-size: 12px; color:#000000;padding:10px;line-height: 1.4;padding:15px 30px;">
         ถ่ายผ่านแอปลิเคชั่น Tik Tok มาโชว์กันให้คลายเครียด<br>ในช่วงที่ปฏิบัติงานที่ศูนย์การเรียนรู้บางปูไม่ว่าจะ<br>ร้อง เต้น เล่น ลิปซิ้ง
 หรือ กิจกรรมสุด FUN มันส์ๆ<br>ของแต่ละคนจะเป็นทีมหรือฉายเดี่ยวก็ไม่จำกัด แต่ต้องเป็น<br>แบบ Social Distancing ส่งมาอวดกัน
@@ -124,7 +127,7 @@
       </div>
       <div style="margin-top:-5px;">
         <div class="btn-t1" style="padding:4px 15px;" onclick="window.location.href='rule.html';">กติกา</div>
-        <div class="btn-t1" style="padding:4px 15px;;" onclick="window.open('https://forms.gle/dDDQnBYfaEeoD3rq5');">ส่ง TikTok</div>
+        <div class="btn-t2" style="padding:4px 15px;;" onclick="window.open('https://forms.gle/dDDQnBYfaEeoD3rq5');">ส่ง TikTok</div>
         <div class="btn-t1" style="padding:4px 15px;;" onclick="window.location.href='tiktoktalk.html';">คุยกัน</div>
 
       </div>
@@ -133,7 +136,7 @@
     <div style="text-align: center; color:#f68b1f; padding:10px;font-weight: 600;">รายชื่อผู้ส่ง TikTok เข้าประกวด</div>
     <div style="width:390px; margin:auto;">
       <center>
-        <div id="DisplayList" class="list"></div>
+        <div id="DisplayTikTok" class="list"></div>
         <div class="clr" style="height: 10px;"></div>
         <center><div id="loadmore" class="btn-t1">Load More...</div></center>
         <div class="clr" style="height:30px;"></div>
