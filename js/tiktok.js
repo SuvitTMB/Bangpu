@@ -41,7 +41,7 @@ function LoadTikTok() {
   str = "";
   db.collection('PostActivity')
     .where('GroupPost','==',sGroupPost)
-    //.orderBy('PostDate','desc')
+    .orderBy('PostTimeStamp','desc')
     .limit(100).get().then( snapshot => {
       snapshot.forEach(doc=> {
         ShowVDO(doc);
