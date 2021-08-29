@@ -312,7 +312,8 @@ var DateTimeStamp = 0;
 	  hour = checkZero(hour);
 	  minutes = checkZero(minutes);
 	  seconds = checkZero(seconds);
-	  dateString = day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm;
+  	  dateString = day + "/" + month + "/" + (parseInt(year)+543) + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm;
+	  //dateString = day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm;
 	}
 
 
